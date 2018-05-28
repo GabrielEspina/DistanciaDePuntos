@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import ar.edu.ub.p3.plano.modelo.Punto;
@@ -100,10 +101,17 @@ public class Ventana {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Punto puntoA = new Punto(Double.parseDouble(textPAX.getText()) ,Double.parseDouble(textPAY.getText()));
-				Punto puntoB = new Punto(Double.parseDouble(textPBX.getText()) ,Double.parseDouble(textPBY.getText()));
+				try {
+					
+					Punto puntoA = new Punto(Double.parseDouble(textPAX.getText()) ,Double.parseDouble(textPAY.getText()));
+					Punto puntoB = new Punto(Double.parseDouble(textPBX.getText()) ,Double.parseDouble(textPBY.getText()));
+					lblResultado.setText( Double.toString(puntoA.calcularDistancia(puntoB)) );
+					
+				}catch(Exception e1) {
+					
+					JOptionPane.showMessageDialog(null, "Datos mal ingresados", "ERROR AL CALCULAR", JOptionPane.CANCEL_OPTION);
+				}
 				
-				lblResultado.setText( Double.toString(puntoA.calcularDistancia(puntoB)) );
 				
 				
 			}
